@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Fofinho</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        background-color: #f9eae1;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        color: #ff69b4;
+        margin-top: 50px;
+    }
+    p {
+        color: #333;
+        font-size: 30px; /* Aumentar o tamanho da letra */
+        margin: 20px;
+    }
+    img {
+        display: none; /* Esconder as imagens por padrão */
+        margin: 0 auto; /* Centralizar horizontalmente */
+        width: 400px; /* Aumentar o tamanho da imagem */
+        height: auto;
+        margin-top: 30px;
+    }
+    .visible {
+        display: block; /* Exibir a imagem visível */
+    }
+</style>
+</head>
+<body>
+    <h1 id="titulo">Muitos parabéns meu amor</h1>
+    <img id="imagem" class="slide visible" src="images/1.jpeg" alt="Imagem Fofa">
+    <p>Este é um site muito fofo foi criado para comemorar o nosso 11º mês de aniversário, se carregares no botão vais ver uma foto nossa dos 11 meses mais felizes das nossas vidas</p>
+    <p>Amo-te muito meu amor💓💓💓 </p>
+    <button onclick="nextSlide()">Próxima Imagem</button>
+
+    <script>
+        let currentSlide = 1;
+        const numSlides = 11;
+
+        function nextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('visible'));
+
+            currentSlide = (currentSlide % numSlides) + 1;
+
+            const currentImage = document.getElementById('imagem');
+            const currentMonth = getMonth(currentSlide);
+            currentImage.src = `images/${currentSlide}.jpeg`;
+            
+            currentImage.classList.add('visible');
+            document.getElementById('titulo').textContent = `Bem-vindo ao Site Fofinho - ${currentMonth}`;
+        }
+
+        function getMonth(slideNumber) {
+            const months = ["Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"];
+            return months[(slideNumber - 1) % months.length];
+        }
+    </script>
+</body>
+</html>
